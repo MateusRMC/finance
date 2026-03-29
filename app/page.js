@@ -74,11 +74,10 @@ export default function Home() {
         <div className="expenseContainer">
           {expenses.map((expense) => (
             <div className="expenseCard" key={expense.id}>
-              <p className="dateLabel">{FormatDate(expense.created_at)}</p>
               <div className="mainInfo">
-                <p className="titleLabel">
+                <h1 className="amountLabel">
                   ${Number(expense.amount).toFixed(2)}
-                </p>
+                </h1>
                 <span
                   className="categoryLabel"
                   style={{
@@ -88,6 +87,7 @@ export default function Home() {
                   {expense.category_features?.title}
                 </span>
               </div>
+              <p className="dateLabel">{FormatDate(expense.created_at)}</p>
             </div>
           ))}
         </div>

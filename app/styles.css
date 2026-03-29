@@ -37,11 +37,22 @@ body {
   align-items: center;
   background-color: whitesmoke;
   margin: 10px;
-  padding: 20px;
+  padding: 10px;
 }
 
 .mainInfo {
-  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  width: 50%;
+}
+
+.categoryLabel {
+  /*background color is dynamic in page.js*/
+  color: white;
+  padding: 5px 20;
+  border-radius: 20px;
 }
 
 .inputExpenses {
@@ -65,7 +76,6 @@ select {
   padding: 10px;
   border: none;
   font-size: 16px;
-  min-height: 46px;
   appearance: none;
 }
 

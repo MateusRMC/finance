@@ -5,7 +5,7 @@ export async function GET() {
   const { data, error } = await supabase
     .schema("finance")
     .from("expenses")
-    .select("*, category_name: category_id (title)") //sub-objeto : ID relacional (FK)
+    .select("*, category_features: category_id (title, category_color)") //sub-objeto : ID relacional (FK)
     .order("created_at", { ascending: false });
 
   if (error) {

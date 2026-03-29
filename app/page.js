@@ -74,10 +74,19 @@ export default function Home() {
         <div className="expenseContainer">
           {expenses.map((expense) => (
             <div className="expenseCard" key={expense.id}>
-              <p>{FormatDate(expense.created_at)}</p>
+              <p className="dateLabel">{FormatDate(expense.created_at)}</p>
               <div className="mainInfo">
-                <h2>${Number(expense.amount).toFixed(2)}</h2>
-                <span>{expense.category_name?.title}</span>
+                <h2 className="titleLabel">
+                  ${Number(expense.amount).toFixed(2)}
+                </h2>
+                <span
+                  className="categoryLabel"
+                  style={{
+                    backgroundColor: expense.category_features?.category_color,
+                  }}
+                >
+                  {expense.category_features?.title}
+                </span>
               </div>
             </div>
           ))}
@@ -87,7 +96,7 @@ export default function Home() {
         <h3>Add new expense</h3>
         <input
           type="text"
-          inputMode="numeric"
+          inputMode="decimal"
           step="0.01" //check later how to insure this
           value={amount}
           placeholder="Enter expense amount"

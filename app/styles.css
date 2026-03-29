@@ -64,6 +64,9 @@ select {
   margin: 5px;
   padding: 10px;
   border: none;
+  font-size: 16px;
+  min-height: 46px;
+  appearance: none;
 }
 
 input[type="submit"] {

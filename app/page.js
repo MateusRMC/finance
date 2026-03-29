@@ -86,7 +86,8 @@ export default function Home() {
       <form className="inputExpenses" onSubmit={addExpense}>
         <h3>Add new expense</h3>
         <input
-          type="number"
+          type="text"
+          inputMode="numeric"
           step="0.01" //check later how to insure this
           value={amount}
           placeholder="Enter expense amount"

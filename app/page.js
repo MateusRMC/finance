@@ -76,9 +76,9 @@ export default function Home() {
             <div className="expenseCard" key={expense.id}>
               <p className="dateLabel">{FormatDate(expense.created_at)}</p>
               <div className="mainInfo">
-                <h2 className="titleLabel">
+                <p className="titleLabel">
                   ${Number(expense.amount).toFixed(2)}
-                </h2>
+                </p>
                 <span
                   className="categoryLabel"
                   style={{

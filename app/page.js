@@ -1,66 +1,115 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import { useEffect, useState } from "react";
+import { format, isToday, isYesterday } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 export default function Home() {
+  const [amount, setAmount] = useState(""); //input
+  const [category, setCategory] = useState(""); //input
+
+  const [expenses, setExpenses] = useState([]); //fetch
+  const [categories, setCategories] = useState([]); //fetch
+
+  function FormatDate(dateInput) {
+    if (!dateInput) return "—";
+
+    const date = new Date(dateInput);
+
+    if (isNaN(date.getTime())) return "—";
+
+    if (isToday(date)) {
+      return `Hoje às ${format(date, "HH:mm")}`;
+    }
+
+    if (isYesterday(date)) {
+      return `Ontem às ${format(date, "HH:mm")}`;
+    }
+
+    return format(date, "dd/MM/yyyy 'às' HH:mm", {
+      locale: ptBR,
+    });
+  }
+
+  async function getCategories() {
+    const req = await fetch("/api/categories/");
+    const res = await req.json();
+
+    setCategories(res);
+  }
+
+  async function getExpenses() {
+    const req = await fetch("/api/expenses/");
+    const res = await req.json();
+
+    setExpenses(res);
+  }
+
+  async function addExpense(e) {
+    e.preventDefault();
+
+    const req = await fetch("/api/expenses/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        category_id: Number(category),
+        amount: parseFloat(amount),
+      }),
+    });
+
+    setAmount("");
+    setCategory("");
+
+    await getExpenses();
+  }
+
+  useEffect(() => {
+    getExpenses();
+    getCategories();
+  }, []);
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      <div className="showExpenses">
+        <div className="expenseContainer">
+          {expenses.map((expense) => (
+            <div className="expenseCard" key={expense.id}>
+              <p>{FormatDate(expense.created_at)}</p>
+              <div className="mainInfo">
+                <h2>${Number(expense.amount).toFixed(2)}</h2>
+                <span>{expense.category_name?.title}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <form className="inputExpenses" onSubmit={addExpense}>
+        <h3>Add new expense</h3>
+        <input
+          type="number"
+          step="0.01" //check later how to insure this
+          value={amount}
+          placeholder="Enter expense amount"
+          onChange={(e) => setAmount(e.target.value)}
+          required
         />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        <select
+          className="Categories"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          required
+        >
+          <option value="" disabled>
+            Select a category
+          </option>
+          {categories.map((c) => (
+            <option key={c.id} value={c.id}>
+              {c.title}
+            </option>
+          ))}
+        </select>
+        <input type="submit" value="Add expense" />
+      </form>
+    </>
   );
 }

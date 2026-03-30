@@ -18,6 +18,36 @@ p {
   text-align: center;
 }
 
+.menu {
+  max-width: 500px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  margin: auto;
+}
+
+.menu button {
+  padding: 5px 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Dashboard view */
+
+.categoryCard {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  margin: 10px;
+  padding: 10px;
+}
+
+/*LIST VIEW*/
+
 .showExpenses {
   background-color: white;
   height: 50vh;

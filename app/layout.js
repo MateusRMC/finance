@@ -1,5 +1,4 @@
 import "@/app/styles.css";
-import Menu from "./components/Menu";
 
 export const metadata = {
   title: "Create Next App",
@@ -11,7 +10,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <div className="main">{children}</div>
-        <Menu />
       </body>
     </html>
   );

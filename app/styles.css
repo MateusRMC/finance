@@ -4,8 +4,7 @@
 }
 
 body {
-  background-color: rgb(245, 236, 220);
-  color: #202020;
+  background-color: #202020;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -20,17 +19,18 @@ p {
 
 .menu {
   max-width: 500px;
-  padding: 10px;
   display: flex;
   justify-content: space-evenly;
-  margin: auto;
+  margin: 10px auto;
 }
 
 .menu button {
   padding: 5px 15px;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   cursor: pointer;
+  color: whitesmoke;
+  border: 1px solid #ccc;
 }
 
 /* Dashboard view */
@@ -42,6 +42,7 @@ p {
   align-items: center;
   border-radius: 5px;
   background-color: whitesmoke;
+  color: black;
   margin: 10px;
   padding: 10px;
 }
@@ -49,15 +50,18 @@ p {
 /*LIST VIEW*/
 
 .showExpenses {
-  background-color: white;
-  height: 50vh;
+  background-color: #202020;
+  height: 45vh;
   padding: 10px;
-  margin: 20px auto;
+  margin: 0 auto;
+  margin-bottom: 0px;
   overflow-y: scroll;
   scrollbar-width: none;
-  width: 90%;
   max-width: 1200px;
-  border-radius: 20px;
+}
+
+.showExpenses h1 {
+  color: whitesmoke;
 }
 
 .expenseContainer {
@@ -96,18 +100,19 @@ p {
 }
 
 .inputExpenses {
-  background-color: whitesmoke;
+  background-color: #101010;
   border-radius: 10px;
   padding: 10px;
   display: flex;
   flex-direction: column;
   margin: auto;
-  width: 90%;
+  width: 80%;
   max-width: 500px;
 }
 
-.inputExpenses h3 {
-  margin: 10px;
+.inputExpenses p {
+  margin-bottom: 10px;
+  color: whitesmoke;
 }
 
 input,
@@ -117,11 +122,13 @@ select {
   border: none;
   font-size: 16px;
   appearance: none;
+  border-radius: 5px;
 }
 
 input[type="submit"] {
-  background: rgb(34, 130, 14);
+  background: orange;
   color: white;
   font-weight: bold;
   border-radius: 10px;
+  box-shadow: 0 0 20px rgb(153, 107, 8) inset;
 }

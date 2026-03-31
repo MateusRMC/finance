@@ -83,12 +83,12 @@ export default function Home() {
     <>
       {view === "Dashboard" && <DashboardView expenses={expenses} categories={categories} FormatDate={FormatDate} />}
       {view === "Lista" && <ListView expenses={expenses} FormatDate={FormatDate} />}
-      {view === "Outro" && <p>Outro</p>}
+
       <div className="menu">
         <button
           style={{
-            backgroundColor: view === "Dashboard" ? "orange" : "transparent",
-            color: view === "Dashboard" ? "white" : "black",
+            backgroundColor: view === "Dashboard" ? "whitesmoke" : "transparent",
+            color: view === "Dashboard" ? "#202020" : "whitesmoke",
           }}
           onClick={() => {
             setView("Dashboard");
@@ -98,8 +98,8 @@ export default function Home() {
         </button>
         <button
           style={{
-            backgroundColor: view === "Lista" ? "Orange" : "transparent",
-            color: view === "Lista" ? "white" : "black",
+            backgroundColor: view === "Lista" ? "Whitesmoke" : "transparent",
+            color: view === "Lista" ? "#202020" : "whitesmoke",
           }}
           onClick={() => {
             setView("Lista");
@@ -107,21 +107,11 @@ export default function Home() {
         >
           Lista
         </button>
-        <button
-          style={{
-            backgroundColor: view === "Outro" ? "Orange" : "transparent",
-            color: view === "Outro" ? "white" : "black",
-          }}
-          onClick={() => {
-            setView("Outro");
-          }}
-        >
-          Outro
-        </button>
       </div>
 
       <form className="inputExpenses" onSubmit={addExpense}>
-        <h3>Add new expense</h3>
+        <p>Add new expense</p>
+
         <input
           type="text"
           inputMode="decimal"
@@ -141,6 +131,7 @@ export default function Home() {
             </option>
           ))}
         </select>
+
         <input type="submit" value="Add expense" />
       </form>
     </>

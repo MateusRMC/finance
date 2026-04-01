@@ -23,6 +23,7 @@ p {
   display: flex;
   justify-content: space-evenly;
   padding: 10px;
+  margin: auto;
 }
 
 .menu button {
@@ -124,12 +125,17 @@ select {
   font-size: 16px;
   appearance: none;
   border-radius: 5px;
+  background-color: #101010;
+  border: 1px solid #303030;
+}
+
+select:invalid {
+  color: gray;
 }
 
 input[type="submit"] {
-  background: orange;
-  color: white;
+  background: rgb(255, 255, 255);
+  color: #000;
   font-weight: bold;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgb(153, 107, 8) inset;
 }

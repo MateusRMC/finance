@@ -12,9 +12,9 @@ export default function Home() {
 
   const [expenses, setExpenses] = useState([]); //fetch
   const [categories, setCategories] = useState([]); //fetch
-  const [usage, setUsage] = useState([]);
+  const [usage, setUsage] = useState([]); //output
 
-  const [view, setView] = useState("Dashboard");
+  const [view, setView] = useState("Dashboard"); //view
 
   function FormatDate(dateInput) {
     if (!dateInput) return "—";
@@ -67,12 +67,6 @@ export default function Home() {
 
     await getExpenses();
   }
-  /*
-  function getUsage() {
-    const totalAmount = expenses.reduce(function (acc, expense) {
-      return acc + Number(expense.amount);
-    }, 0);
-  } */
 
   useEffect(() => {
     getExpenses();
@@ -122,7 +116,7 @@ export default function Home() {
           required
         />
         <select className="Categories" value={category} onChange={(e) => setCategory(e.target.value)} required>
-          <option value="" disabled>
+          <option value="" disabled hidden>
             Select a category
           </option>
           {categories.map((c) => (

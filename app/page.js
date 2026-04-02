@@ -1,71 +1,75 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { format, formatDate, isToday, isYesterday } from "date-fns";
+import { format, isToday, isYesterday } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import ListView from "./components/ListView";
 import DashboardView from "./components/DashboardView";
+import Settings from "./components/Settings";
 
-export default function Home() {
-  const [amount, setAmount] = useState(""); //input
-  const [category, setCategory] = useState(""); //input
+function formatExpenseDate(dateInput) {
+  if (!dateInput) return "—";
 
-  const [expenses, setExpenses] = useState([]); //fetch
-  const [categories, setCategories] = useState([]); //fetch
-  const [usage, setUsage] = useState([]); //output
+  const date = new Date(dateInput);
+  if (isNaN(date.getTime())) return "—";
 
-  const [view, setView] = useState("Dashboard"); //view
-
-  function FormatDate(dateInput) {
-    if (!dateInput) return "—";
-
-    const date = new Date(dateInput);
-
-    if (isNaN(date.getTime())) return "—";
-
-    if (isToday(date)) {
-      return `Hoje às ${format(date, "HH:mm")}`;
-    }
-
-    if (isYesterday(date)) {
-      return `Ontem às ${format(date, "HH:mm")}`;
-    }
-
-    return format(date, "dd/MM/yyyy 'às' HH:mm", {
-      locale: ptBR,
-    });
+  if (isToday(date)) {
+    return `Hoje às ${format(date, "HH:mm")}`;
   }
 
-  async function getCategories() {
-    const req = await fetch("/api/categories/");
-    const res = await req.json();
+  if (isYesterday(date)) {
+    return `Ontem às ${format(date, "HH:mm")}`;
+  }
 
-    setCategories(res);
+  return format(date, "dd/MM/yyyy 'às' HH:mm", { locale: ptBR });
+}
+
+export default function Home() {
+  const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("");
+  const [expenses, setExpenses] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [view, setView] = useState("Dashboard");
+
+  async function getCategories() {
+    try {
+      const req = await fetch("/api/categories/");
+      const res = await req.json();
+      setCategories(res);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
   }
 
   async function getExpenses() {
-    const req = await fetch("/api/expenses/");
-    const res = await req.json();
-
-    setExpenses(res);
+    try {
+      const req = await fetch("/api/expenses/");
+      const res = await req.json();
+      setExpenses(res);
+    } catch (error) {
+      console.error("Error fetching expenses:", error);
+    }
   }
 
   async function addExpense(e) {
     e.preventDefault();
 
-    const req = await fetch("/api/expenses/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        category_id: Number(category),
-        amount: parseFloat(amount),
-      }),
-    });
+    try {
+      await fetch("/api/expenses/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          category_id: Number(category),
+          amount: parseFloat(amount),
+        }),
+      });
 
-    setAmount("");
-    setCategory("");
-
-    await getExpenses();
+      setAmount("");
+      setCategory("");
+      await getExpenses();
+    } catch (error) {
+      console.error("Error adding expense:", error);
+    }
   }
 
   useEffect(() => {
@@ -75,8 +79,11 @@ export default function Home() {
 
   return (
     <>
-      {view === "Dashboard" && <DashboardView expenses={expenses} categories={categories} FormatDate={FormatDate} />}
-      {view === "Lista" && <ListView expenses={expenses} FormatDate={FormatDate} />}
+      <div className="showArea">
+        {view === "Dashboard" && <DashboardView expenses={expenses} categories={categories} />}
+        {view === "Lista" && <ListView expenses={expenses} FormatDate={formatExpenseDate} />}
+        {view === "Settings" && <Settings categories={categories} />}
+      </div>
 
       <div className="inputArea">
         <div className="menu">
@@ -85,35 +92,37 @@ export default function Home() {
               backgroundColor: view === "Dashboard" ? "whitesmoke" : "transparent",
               color: view === "Dashboard" ? "#202020" : "whitesmoke",
             }}
-            onClick={() => {
-              setView("Dashboard");
-            }}
+            onClick={() => setView("Dashboard")}
           >
             Dashboard
           </button>
+
           <button
             style={{
-              backgroundColor: view === "Lista" ? "Whitesmoke" : "transparent",
+              backgroundColor: view === "Lista" ? "whitesmoke" : "transparent",
               color: view === "Lista" ? "#202020" : "whitesmoke",
             }}
-            onClick={() => {
-              setView("Lista");
-            }}
+            onClick={() => setView("Lista")}
           >
             Lista
           </button>
+
+          <button
+            style={{
+              backgroundColor: view === "Settings" ? "whitesmoke" : "transparent",
+              color: view === "Settings" ? "#202020" : "whitesmoke",
+            }}
+            onClick={() => setView("Settings")}
+          >
+            Settings
+          </button>
         </div>
+
         <form className="inputContainer" onSubmit={addExpense}>
           <p>Add new expense</p>
-          <input
-            type="text"
-            inputMode="decimal"
-            step="0.01" //check later how to insure this
-            value={amount}
-            placeholder="Enter expense amount"
-            onChange={(e) => setAmount(e.target.value)}
-            required
-          />
+
+          <input type="text" inputMode="decimal" value={amount} placeholder="Enter expense amount" onChange={(e) => setAmount(e.target.value)} required />
+
           <select className="Categories" value={category} onChange={(e) => setCategory(e.target.value)} required>
             <option value="" disabled hidden>
               Select a category

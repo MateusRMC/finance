@@ -19,11 +19,26 @@ p {
   text-align: center;
 }
 
+.showContainer {
+  background-color: #202020;
+  height: 40vh;
+  padding: 10px;
+  margin: 0 auto;
+  margin-bottom: 0px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  max-width: 1200px;
+}
+
+.showContainer h1 {
+  color: whitesmoke;
+}
+
 .menu {
   border-top: 1px solid #505050;
   display: flex;
   justify-content: space-evenly;
-  padding: 10px;
+  padding: 20px;
   margin: auto;
 }
 
@@ -34,6 +49,18 @@ p {
   cursor: pointer;
   color: whitesmoke;
   border: 1px solid #ccc;
+}
+
+.inputContainer {
+  background-color: #101010;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: auto;
+  height: 40vh;
+  max-width: 500px;
 }
 
 /* Dashboard view */
@@ -51,21 +78,6 @@ p {
 }
 
 /*LIST VIEW*/
-
-.showContainer {
-  background-color: #202020;
-  height: 45vh;
-  padding: 10px;
-  margin: 0 auto;
-  margin-bottom: 0px;
-  overflow-y: scroll;
-  scrollbar-width: none;
-  max-width: 1200px;
-}
-
-.showContainer h1 {
-  color: whitesmoke;
-}
 
 .expenseContainer {
   max-width: 500px;
@@ -100,17 +112,6 @@ p {
 
 .dateLabel {
   color: #ccc;
-}
-
-.inputContainer {
-  background-color: #101010;
-  border-radius: 10px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  height: 45vh;
-  max-width: 500px;
 }
 
 .inputContainer p {

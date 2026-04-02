@@ -88,12 +88,12 @@ p {
 /* Dashboard view */
 
 .progressArea {
-  width: 90%;
+  width: 80%;
   height: 20px;
   background: #f1f5f9;
   border-radius: 50px;
   overflow: hidden;
-  margin: 15px auto;
+  margin: 15px;
 }
 
 .progressBar {
@@ -101,7 +101,6 @@ p {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-
   height: 100%;
   background: linear-gradient(90deg, #025922, #04984c);
   border-radius: 999px;

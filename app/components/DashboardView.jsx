@@ -1,4 +1,4 @@
-export default function DashboardView({ expenses, categories }) {
+export default function DashboardView({ expenses, categories, view }) {
   const totals = {};
 
   expenses.forEach((e) => {
@@ -15,10 +15,16 @@ export default function DashboardView({ expenses, categories }) {
     <div className="showArea">
       {dashCategories.map((c) => (
         <div key={c.id} className="categoryCard">
-          <p>{c.title}</p>
-          <p>Used: ${c.total.toFixed(2)}</p>
-          <p>Left: ${(c.budget - c.total).toFixed(2)}</p>
-          <p>Budget: ${c.budget.toFixed(2)}</p>
+          <div className="mainInfo">
+            <p style={{ backgroundColor: c.category_color, color: "white", padding: "1px 5px", borderRadius: "5px" }}>{c.title}</p>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "5px" }}>
+            <p>Used: ${c.total.toFixed(2)}</p>
+            <p style={{ color: c.budget - c.total <= 0 ? "Red" : "Green" }}>Left: ${(c.budget - c.total).toFixed(2)}</p>
+          </div>
+          <div className="mainInfo">
+            <p>Budget: ${c.budget.toFixed(2)}</p>
+          </div>
         </div>
       ))}
     </div>

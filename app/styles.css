@@ -24,7 +24,6 @@ p {
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   text-align: center;
 }
 
@@ -51,7 +50,7 @@ p {
 .menu {
   display: flex;
   justify-content: space-around;
-  padding: 20px;
+  padding: 10px;
   width: 80%;
   margin: 0 auto;
   max-width: 500px;

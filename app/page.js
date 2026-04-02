@@ -77,7 +77,6 @@ export default function Home() {
     <>
       {view === "Dashboard" && <DashboardView expenses={expenses} categories={categories} FormatDate={FormatDate} />}
       {view === "Lista" && <ListView expenses={expenses} FormatDate={FormatDate} />}
-
       <div className="menu">
         <button
           style={{
@@ -102,10 +101,8 @@ export default function Home() {
           Lista
         </button>
       </div>
-
-      <form className="inputExpenses" onSubmit={addExpense}>
+      <form className="inputContainer" onSubmit={addExpense}>
         <p>Add new expense</p>
-
         <input
           type="text"
           inputMode="decimal"

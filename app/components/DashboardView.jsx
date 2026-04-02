@@ -12,7 +12,7 @@ export default function DashboardView({ expenses, categories }) {
   }));
 
   return (
-    <div className="showExpenses">
+    <div className="showContainer">
       {dashCategories.map((c) => (
         <div key={c.id} className="categoryCard">
           <p>{c.title}</p>

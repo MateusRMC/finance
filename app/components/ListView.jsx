@@ -1,6 +1,6 @@
 export default function ListView({ expenses, FormatDate }) {
   return (
-    <div className="showContainer">
+    <div className="showArea">
       <div className="expenseContainer">
         {expenses.map((expense) => (
           <div className="expenseCard" key={expense.id}>

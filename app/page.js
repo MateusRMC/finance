@@ -101,29 +101,31 @@ export default function Home() {
           Lista
         </button>
       </div>
-      <form className="inputContainer" onSubmit={addExpense}>
-        <p>Add new expense</p>
-        <input
-          type="text"
-          inputMode="decimal"
-          step="0.01" //check later how to insure this
-          value={amount}
-          placeholder="Enter expense amount"
-          onChange={(e) => setAmount(e.target.value)}
-          required
-        />
-        <select className="Categories" value={category} onChange={(e) => setCategory(e.target.value)} required>
-          <option value="" disabled hidden>
-            Select a category
-          </option>
-          {categories.map((c) => (
-            <option key={c.id} value={c.id}>
-              {c.title}
+      <form className="inputArea" onSubmit={addExpense}>
+        <div className="inputContainer">
+          <p>Add new expense</p>
+          <input
+            type="text"
+            inputMode="decimal"
+            step="0.01" //check later how to insure this
+            value={amount}
+            placeholder="Enter expense amount"
+            onChange={(e) => setAmount(e.target.value)}
+            required
+          />
+          <select className="Categories" value={category} onChange={(e) => setCategory(e.target.value)} required>
+            <option value="" disabled hidden>
+              Select a category
             </option>
-          ))}
-        </select>
+            {categories.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.title}
+              </option>
+            ))}
+          </select>
 
-        <input type="submit" value="Add expense" />
+          <input type="submit" value="Add expense" />
+        </div>
       </form>
     </>
   );

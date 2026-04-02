@@ -77,32 +77,33 @@ export default function Home() {
     <>
       {view === "Dashboard" && <DashboardView expenses={expenses} categories={categories} FormatDate={FormatDate} />}
       {view === "Lista" && <ListView expenses={expenses} FormatDate={FormatDate} />}
-      <div className="menu">
-        <button
-          style={{
-            backgroundColor: view === "Dashboard" ? "whitesmoke" : "transparent",
-            color: view === "Dashboard" ? "#202020" : "whitesmoke",
-          }}
-          onClick={() => {
-            setView("Dashboard");
-          }}
-        >
-          Dashboard
-        </button>
-        <button
-          style={{
-            backgroundColor: view === "Lista" ? "Whitesmoke" : "transparent",
-            color: view === "Lista" ? "#202020" : "whitesmoke",
-          }}
-          onClick={() => {
-            setView("Lista");
-          }}
-        >
-          Lista
-        </button>
-      </div>
-      <form className="inputArea" onSubmit={addExpense}>
-        <div className="inputContainer">
+
+      <div className="inputArea">
+        <div className="menu">
+          <button
+            style={{
+              backgroundColor: view === "Dashboard" ? "whitesmoke" : "transparent",
+              color: view === "Dashboard" ? "#202020" : "whitesmoke",
+            }}
+            onClick={() => {
+              setView("Dashboard");
+            }}
+          >
+            Dashboard
+          </button>
+          <button
+            style={{
+              backgroundColor: view === "Lista" ? "Whitesmoke" : "transparent",
+              color: view === "Lista" ? "#202020" : "whitesmoke",
+            }}
+            onClick={() => {
+              setView("Lista");
+            }}
+          >
+            Lista
+          </button>
+        </div>
+        <form className="inputContainer" onSubmit={addExpense}>
           <p>Add new expense</p>
           <input
             type="text"
@@ -125,8 +126,8 @@ export default function Home() {
           </select>
 
           <input type="submit" value="Add expense" />
-        </div>
-      </form>
+        </form>
+      </div>
     </>
   );
 }

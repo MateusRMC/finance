@@ -85,6 +85,11 @@ p {
   max-width: 500px;
 }
 
+.inputContainer input,
+select {
+  color: white;
+}
+
 /* Dashboard view */
 
 .progressArea {

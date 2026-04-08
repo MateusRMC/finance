@@ -56,6 +56,7 @@ export default function Settings({ categories, getCategories, getExpenses }) {
               border: "none",
               outline: "none",
               background: "transparent",
+              width: "50%",
             }}
           />
 
@@ -72,6 +73,7 @@ export default function Settings({ categories, getCategories, getExpenses }) {
                 color: "black",
                 border: "none",
                 outline: "none",
+                width: "30%",
               }}
             />
           </div>

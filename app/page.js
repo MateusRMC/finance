@@ -80,9 +80,11 @@ export default function Home() {
   return (
     <>
       <div className="showArea">
-        {view === "Dashboard" && <DashboardView expenses={expenses} categories={categories} />}
-        {view === "Lista" && <ListView expenses={expenses} FormatDate={formatExpenseDate} />}
-        {view === "Settings" && <Settings categories={categories} />}
+        <div className="showWrapper">
+          {view === "Dashboard" && <DashboardView expenses={expenses} categories={categories} />}
+          {view === "Lista" && <ListView expenses={expenses} FormatDate={formatExpenseDate} />}
+          {view === "Settings" && <Settings categories={categories} />}
+        </div>
       </div>
 
       <div className="inputArea">

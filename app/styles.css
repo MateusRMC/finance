@@ -36,7 +36,6 @@ p {
   overflow-y: auto;
   scrollbar-width: none;
   width: 100%;
-  max-width: 1200px;
 }
 
 .showArea::-webkit-scrollbar {
@@ -186,4 +185,25 @@ input[type="submit"] {
   color: #000;
   font-weight: bold;
   border-radius: 10px;
+}
+
+/* desktop tweaks */
+
+@media screen and (orientation: landscape) {
+  .main {
+    flex-direction: row-reverse;
+  }
+
+  .showArea {
+    flex: 7;
+  }
+
+  .showWrapper {
+    max-width: 1000px;
+    margin: 10px auto;
+  }
+
+  .inputArea {
+    flex: 3;
+  }
 }

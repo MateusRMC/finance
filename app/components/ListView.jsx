@@ -1,4 +1,11 @@
-export default function ListView({ expenses, FormatDate }) {
+import { useEffect } from "react";
+
+export default function ListView({ expenses, FormatDate, getCategories, getExpenses }) {
+  useEffect(() => {
+    getCategories();
+    getExpenses();
+  }, []);
+
   return (
     <>
       <div className="expenseContainer">

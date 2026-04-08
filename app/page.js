@@ -81,9 +81,9 @@ export default function Home() {
     <>
       <div className="showArea">
         <div className="showWrapper">
-          {view === "Dashboard" && <DashboardView expenses={expenses} categories={categories} />}
-          {view === "Lista" && <ListView expenses={expenses} FormatDate={formatExpenseDate} />}
-          {view === "Settings" && <Settings categories={categories} />}
+          {view === "Dashboard" && <DashboardView expenses={expenses} categories={categories} getCategories={getCategories} getExpenses={getExpenses} />}
+          {view === "Lista" && <ListView expenses={expenses} FormatDate={formatExpenseDate} getCategories={getCategories} getExpenses={getExpenses} />}
+          {view === "Settings" && <Settings categories={categories} getCategories={getCategories} getExpenses={getExpenses} />}
         </div>
       </div>
 

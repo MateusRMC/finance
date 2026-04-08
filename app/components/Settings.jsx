@@ -1,7 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function Settings({ categories }) {
+export default function Settings({ categories, getCategories, getExpenses }) {
   const [formData, setFormData] = useState(categories);
   const [saving, setSaving] = useState(false);
 
@@ -34,6 +34,11 @@ export default function Settings({ categories }) {
       setSaving(false);
     }
   }
+
+  useEffect(() => {
+    getCategories();
+    getExpenses();
+  }, []);
 
   return (
     <>

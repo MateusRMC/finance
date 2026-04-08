@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export default function DashboardView({ expenses, categories }) {
+export default function DashboardView({ expenses, categories, getCategories, getExpenses }) {
   const [daysLeft, setDaysLeft] = useState(null);
   const statementDate = 18;
 
@@ -17,6 +17,7 @@ export default function DashboardView({ expenses, categories }) {
 
   useEffect(() => {
     setDaysLeft(calculateDaysLeft());
+    getCategories();
   }, []);
 
   const totals = {};

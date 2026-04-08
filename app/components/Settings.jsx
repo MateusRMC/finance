@@ -56,11 +56,11 @@ export default function Settings({ categories, getCategories, getExpenses }) {
               border: "none",
               outline: "none",
               background: "transparent",
-              width: "50%",
+              flex: "7",
             }}
           />
 
-          <div>
+          <div style={{ flex: "3" }}>
             $
             <input
               value={c.budget}
@@ -73,7 +73,7 @@ export default function Settings({ categories, getCategories, getExpenses }) {
                 color: "black",
                 border: "none",
                 outline: "none",
-                width: "30%",
+                width: "100%",
               }}
             />
           </div>

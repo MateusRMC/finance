@@ -52,7 +52,7 @@ export default function Settings({ categories, getCategories, getExpenses }) {
             style={{
               color: c.category_color,
               fontWeight: "bold",
-              fontSize: "20px",
+              fontSize: "16px",
               border: "none",
               outline: "none",
               background: "transparent",
@@ -67,12 +67,11 @@ export default function Settings({ categories, getCategories, getExpenses }) {
               style={{
                 backgroundColor: "whitesmoke",
                 fontWeight: "bold",
-                fontSize: "20px",
+                fontSize: "16px",
                 textAlign: "right",
                 color: "black",
                 border: "none",
                 outline: "none",
-                width: "120px",
               }}
             />
           </div>

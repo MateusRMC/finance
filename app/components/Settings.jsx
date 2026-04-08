@@ -56,11 +56,11 @@ export default function Settings({ categories, getCategories, getExpenses }) {
               border: "none",
               outline: "none",
               background: "transparent",
-              flex: "7",
+              flex: "5",
             }}
           />
 
-          <div style={{ flex: "3" }}>
+          <div style={{ flex: "5", display: "flex", flexDirection: "row", alignItems: "center" }}>
             $
             <input
               value={c.budget}
@@ -84,9 +84,10 @@ export default function Settings({ categories, getCategories, getExpenses }) {
         onClick={handleSave}
         disabled={saving}
         style={{
-          padding: "20px 100px",
+          padding: "8px 50px",
           margin: "10px",
-          backgroundColor: "gray",
+          backgroundColor: "#ffffff",
+          color: "black",
           borderRadius: "5px",
           cursor: saving ? "not-allowed" : "pointer",
         }}

@@ -32,6 +32,8 @@ export default function Settings({ categories, getCategories, getExpenses }) {
       console.error("Erro ao salvar:", error);
     } finally {
       setSaving(false);
+      getCategories();
+      getExpenses();
     }
   }
 
@@ -45,7 +47,7 @@ export default function Settings({ categories, getCategories, getExpenses }) {
       <h1>Settings</h1>
 
       {formData.map((c) => (
-        <div key={c.id} className="categoryCard" style={{ flexDirection: "row", padding: "5px 15px" }}>
+        <div key={c.id} className="categoryCard" style={{ flexDirection: "row", justifyContent: "space-between", padding: "5px 15px" }}>
           <input
             value={c.title}
             onChange={(e) => handleChange(c.id, "title", e.target.value)}
@@ -56,12 +58,11 @@ export default function Settings({ categories, getCategories, getExpenses }) {
               border: "none",
               outline: "none",
               background: "transparent",
-              flex: "5",
             }}
           />
 
-          <div style={{ flex: "5", display: "flex", flexDirection: "row", alignItems: "center" }}>
-            $
+          <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "flex-end" }}>
+            <span>$</span>
             <input
               value={c.budget}
               onChange={(e) => handleChange(c.id, "budget", e.target.value)}
@@ -74,6 +75,7 @@ export default function Settings({ categories, getCategories, getExpenses }) {
                 border: "none",
                 outline: "none",
                 width: "100%",
+                maxWidth: "70px",
               }}
             />
           </div>

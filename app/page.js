@@ -81,9 +81,30 @@ export default function Home() {
     <>
       <div className="showArea">
         <div className="showWrapper">
-          {view === "Dashboard" && <DashboardView expenses={expenses} categories={categories} getCategories={getCategories} getExpenses={getExpenses} />}
-          {view === "Lista" && <ListView expenses={expenses} FormatDate={formatExpenseDate} getCategories={getCategories} getExpenses={getExpenses} />}
-          {view === "Settings" && <Settings categories={categories} getCategories={getCategories} getExpenses={getExpenses} />}
+          {view === "Dashboard" && (
+            <DashboardView
+              expenses={expenses}
+              categories={categories}
+              getCategories={getCategories}
+              getExpenses={getExpenses}
+            />
+          )}
+          {view === "Lista" && (
+            <ListView
+              expenses={expenses}
+              categories={categories}
+              FormatDate={formatExpenseDate}
+              getCategories={getCategories}
+              getExpenses={getExpenses}
+            />
+          )}
+          {view === "Settings" && (
+            <Settings
+              categories={categories}
+              getCategories={getCategories}
+              getExpenses={getExpenses}
+            />
+          )}
         </div>
       </div>
 
@@ -123,9 +144,21 @@ export default function Home() {
         <form className="inputContainer" onSubmit={addExpense}>
           <p>Add new expense</p>
 
-          <input type="text" inputMode="decimal" value={amount} placeholder="Enter expense amount" onChange={(e) => setAmount(e.target.value)} required />
+          <input
+            type="text"
+            inputMode="decimal"
+            value={amount}
+            placeholder="Enter expense amount"
+            onChange={(e) => setAmount(e.target.value)}
+            required
+          />
 
-          <select className="Categories" value={category} onChange={(e) => setCategory(e.target.value)} required>
+          <select
+            className="Categories"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            required
+          >
             <option value="" disabled hidden>
               Select a category
             </option>

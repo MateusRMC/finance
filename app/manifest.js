@@ -1,13 +1,13 @@
 // app/manifest.js
 export default function manifest() {
   return {
-    name: "PWA Teste",
-    short_name: "PWA",
-    description: "Meu primeiro PWA com Next.js",
+    name: "Aurora Finance",
+    short_name: "Aurora Finance",
+    description: "Simple Finance Tracker",
     start_url: "/",
     display: "standalone",
-    background_color: "#ffffff",
-    theme_color: "#111111",
+    background_color: "#000",
+    theme_color: "#000",
     icons: [
       {
         src: "/logo.png",
